@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Bem-vindo, {{ current_user.nome }}</h2>
+
+<form method="post" class="mb-4">
+    <div class="row g-2">
+        <div class="col-md"><input class="form-control" name="data" placeholder="Data (YYYY-MM-DD)" required></div>
+        <div class="col-md"><input class="form-control" name="valor" placeholder="Valor (R$)" required></div>
+        <div class="col-md"><input class="form-control" name="local" placeholder="Local" required></div>
+        <div class="col-md"><input class="form-control" name="contratante" placeholder="Contratante" required></div>
+        <div class="col-md-auto"><button class="btn btn-primary">Adicionar Show</button></div>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Local</th>
+            <th>Contratante</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for show in shows %}
+        <tr>
+            <td>{{ show['data'] }}</td>
+            <td>R$ {{ "%.2f"|format(show['valor']) }}</td>
+            <td>{{ show['local'] }}</td>
+            <td>{{ show['contratante'] }}</td>
+            <td><a href="{{ url_for('delete', show_id=show['id']) }}" class="btn btn-danger btn-sm">Remover</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('logout') }}" class="btn btn-outline-secondary">Sair</a>
+{% endblock %}

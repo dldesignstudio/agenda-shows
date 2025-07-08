@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cadastro</h2>
+<form method="post">
+    <div class="mb-3">
+        <label>Nome</label>
+        <input class="form-control" name="nome" required>
+    </div>
+    <div class="mb-3">
+        <label>Email</label>
+        <input class="form-control" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label>Senha</label>
+        <input class="form-control" name="senha" type="password" required>
+    </div>
+    <button class="btn btn-success">Cadastrar</button>
+</form>
+{% endblock %}
